@@ -44,6 +44,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Webpack and React builds
+webpack-stats.json
+static/js/bundles/
+*.hot-update.js
+*.hot-update.json
+
+# Package lock files (optional - you can include these if you want)
+# package-lock.json
+# yarn.lock
+
 # Python
 *.py[cod]
 *$py.class

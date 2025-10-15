@@ -24,12 +24,14 @@ A professional Django-based website for Diamond Band, a Christian band specializ
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/diamond-band-website.git
 cd diamond-band-website
 ```
 
 2. Create a virtual environment:
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate  # Windows
@@ -38,27 +40,32 @@ source .venv/bin/activate  # Linux/Mac
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install django crispy-bootstrap5 python-decouple pillow
 ```
 
 4. Create environment file:
+
 ```bash
 cp .env.example .env
 # Edit .env with your settings
 ```
 
 5. Run migrations:
+
 ```bash
 python manage.py migrate
 ```
 
 6. Create superuser:
+
 ```bash
 python manage.py createsuperuser
 ```
 
 7. Run the development server:
+
 ```bash
 python manage.py runserver
 ```

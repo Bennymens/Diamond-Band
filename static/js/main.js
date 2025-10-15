@@ -49,6 +49,47 @@ document.addEventListener("DOMContentLoaded", function () {
     backToTopBtn.addEventListener("click", scrollToTop);
   }
 
+  // Mobile Navigation Enhancements
+  function initializeMobileNav() {
+    const navbarToggler = document.querySelector(".custom-toggler");
+    const navbarCollapse = document.querySelector("#navbarNav");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    if (navbarToggler && navbarCollapse) {
+      // Close mobile menu when clicking on nav links
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navbarCollapse.classList.contains("show")) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+              toggle: false,
+            });
+            bsCollapse.hide();
+          }
+        });
+      });
+
+      // Update aria-expanded attribute for hamburger animation
+      navbarToggler.addEventListener("click", function () {
+        setTimeout(() => {
+          const isExpanded = navbarCollapse.classList.contains("show");
+          navbarToggler.setAttribute("aria-expanded", isExpanded);
+        }, 10);
+      });
+
+      // Handle collapse events
+      navbarCollapse.addEventListener("hidden.bs.collapse", function () {
+        navbarToggler.setAttribute("aria-expanded", "false");
+      });
+
+      navbarCollapse.addEventListener("shown.bs.collapse", function () {
+        navbarToggler.setAttribute("aria-expanded", "true");
+      });
+    }
+  }
+
+  // Initialize mobile navigation
+  initializeMobileNav();
+
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {

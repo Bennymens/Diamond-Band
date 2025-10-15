@@ -137,6 +137,95 @@ h6 {
   color: var(--primary-black) !important;
 }
 
+/* Custom Hamburger Menu */
+.custom-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hamburger-line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--primary-gold);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  position: absolute;
+}
+
+.hamburger-line:nth-child(1) {
+  transform: translateY(-8px);
+}
+
+.hamburger-line:nth-child(2) {
+  transform: translateY(0);
+}
+
+.hamburger-line:nth-child(3) {
+  transform: translateY(8px);
+}
+
+/* Hamburger to X transformation */
+.custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translateY(0);
+}
+
+.custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.custom-toggler[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translateY(0);
+}
+
+/* Mobile Navigation Improvements */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: rgba(0, 0, 0, 0.98);
+    border-radius: 10px;
+    margin-top: 1rem;
+    padding: 1rem;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+  }
+
+  .navbar-nav .nav-link {
+    text-align: center;
+    padding: 0.75rem 1rem !important;
+    margin: 0.25rem 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: translateX(5px);
+  }
+
+  .navbar-nav .nav-link.btn {
+    margin: 1rem auto 0.5rem;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+}
+
 /* Button Styles */
 .btn {
   font-weight: 600;
@@ -578,4 +667,153 @@ h6 {
 .slide-in-right.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 991.98px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  /* Section padding */
+  .section {
+    padding: 3rem 0;
+  }
+
+  /* Hero section mobile */
+  .hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .hero .lead {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  /* Card improvements */
+  .service-card,
+  .testimonial,
+  .blog-card {
+    margin-bottom: 2rem;
+  }
+
+  /* Gallery mobile */
+  .gallery-item {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Stats section */
+  .stats-counter .col-lg-3 {
+    margin-bottom: 2rem;
+  }
+
+  /* Footer adjustments */
+  .footer .col-lg-4 {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Smaller mobile devices */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Hero section */
+  .hero {
+    padding: 2rem 0;
+    min-height: 80vh;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  /* Button adjustments */
+  .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Form improvements */
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Image responsiveness */
+  .about-image img,
+  .member-card img,
+  .gallery-item img {
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero .lead {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  /* Compact layout */
+  .section {
+    padding: 2rem 0;
+  }
+
+  /* Touch-friendly buttons */
+  .btn {
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .nav-link:hover,
+  .card:hover {
+    transform: none;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 0;
+  }
+
+  .gallery-item .gallery-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
+  }
 }
