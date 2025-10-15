@@ -3,13 +3,7 @@
   height: 100%;
   overflow: hidden;
   cursor: grab;
-  background: rgba(
-    255,
-    0,
-    0,
-    0.1
-  ); /* Temporary red background to see the container */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Temporary border to debug */
+  background: transparent;
 }
 
 .circular-gallery:active {
@@ -22,5 +16,4 @@
   height: 100% !important;
   position: relative !important;
   z-index: 1 !important;
-  background: rgba(0, 255, 0, 0.1); /* Temporary green background for canvas */
 }
