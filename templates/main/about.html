@@ -1,0 +1,244 @@
+{% extends 'base.html' %} {% load static %} {% block title %}About Diamond Band
+- Our Story{% endblock %} {% block content %}
+<!-- Page Header -->
+<section class="section bg-dark text-white" style="margin-top: 76px">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center" data-aos="fade-up">
+        <h1 class="display-4 mb-3">
+          About <span class="text-gold">Diamond Band</span>
+        </h1>
+        <p class="lead">
+          Discover our journey, meet our talented members, and learn about our
+          mission
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <h2 class="section-title text-start">
+          Our <span class="text-gold">Story</span>
+        </h2>
+        <p class="lead mb-4">
+          Diamond Band was born from a shared passion for music and faith. We
+          believe that music has the power to bring people together, inspire
+          hearts, and create lasting memories.
+        </p>
+        <p class="mb-4">
+          Founded with the vision of providing exceptional live music
+          experiences, we have grown into a premier Christian band serving
+          communities across the region. Our commitment to excellence,
+          professionalism, and spiritual upliftment sets us apart.
+        </p>
+        <p class="mb-4">
+          Whether it's a wedding celebration, corporate gathering, or community
+          event, we bring the same level of dedication and musical excellence to
+          every performance.
+        </p>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <img
+          src="{% static 'images/about-story.jpg' %}"
+          alt="Our Story"
+          class="img-fluid rounded shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Band Members -->
+{% if band_members %}
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title">
+        Meet Our <span class="text-gold">Musicians</span>
+      </h2>
+      <p class="lead">Talented individuals united by music and faith</p>
+    </div>
+
+    <div class="row">
+      {% for member in band_members %}
+      <div
+        class="col-lg-4 col-md-6 mb-5"
+        data-aos="fade-up"
+        data-aos-delay="{{ forloop.counter0|add:1|stringformat:'d00' }}"
+      >
+        <div class="card member-card text-center h-100 border-0 shadow">
+          {% if member.image %}
+          <div class="member-image overflow-hidden">
+            <img
+              src="{{ member.image.url }}"
+              alt="{{ member.name }}"
+              class="card-img-top"
+            />
+          </div>
+          {% else %}
+          <div
+            class="member-placeholder d-flex align-items-center justify-content-center bg-light"
+          >
+            <i class="fas fa-user fa-4x text-gold"></i>
+          </div>
+          {% endif %}
+
+          <div class="card-body p-4">
+            <h4 class="card-title mb-2">{{ member.name }}</h4>
+            <h6 class="text-gold mb-3">{{ member.role }}</h6>
+            <p class="card-text text-muted">{{ member.bio }}</p>
+
+            <div class="social-links mt-3">
+              {% if member.facebook %}
+              <a
+                href="{{ member.facebook }}"
+                class="btn btn-outline-primary btn-sm me-2"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              {% endif %} {% if member.instagram %}
+              <a
+                href="{{ member.instagram }}"
+                class="btn btn-outline-primary btn-sm me-2"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              {% endif %} {% if member.twitter %}
+              <a
+                href="{{ member.twitter }}"
+                class="btn btn-outline-primary btn-sm me-2"
+                target="_blank"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Our Mission & Values -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <h2 class="section-title">
+          Our <span class="text-gold">Mission</span>
+        </h2>
+        <p class="lead mb-5">
+          To spread joy, faith, and unity through the universal language of
+          music, creating meaningful experiences that touch hearts and souls.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-center">
+          <div class="icon-box mb-3">
+            <i class="fas fa-heart fa-3x text-gold"></i>
+          </div>
+          <h4>Faith-Centered</h4>
+          <p class="text-muted">
+            Every performance is grounded in our Christian values, bringing
+            spiritual upliftment to all who listen.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center">
+          <div class="icon-box mb-3">
+            <i class="fas fa-star fa-3x text-gold"></i>
+          </div>
+          <h4>Excellence</h4>
+          <p class="text-muted">
+            We strive for musical excellence in every note, ensuring each
+            performance exceeds expectations.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="text-center">
+          <div class="icon-box mb-3">
+            <i class="fas fa-users fa-3x text-gold"></i>
+          </div>
+          <h4>Community</h4>
+          <p class="text-muted">
+            We believe in building strong communities through the power of
+            shared musical experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8" data-aos="fade-right">
+        <h2 class="mb-3">Ready to Experience Diamond Band?</h2>
+        <p class="lead mb-0">
+          Join the hundreds of satisfied clients who have made their events
+          memorable with our live music performances.
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg me-2">
+          Book Now
+        </a>
+        <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_css %}
+<style>
+  .member-card .member-image img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .member-card:hover .member-image img {
+    transform: scale(1.05);
+  }
+
+  .member-placeholder {
+    height: 300px;
+    background-color: var(--light-gray);
+  }
+
+  .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, var(--gold-light), var(--primary-gold));
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+  }
+
+  .icon-box i {
+    color: var(--primary-black);
+  }
+</style>
+{% endblock %}
