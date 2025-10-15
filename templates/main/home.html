@@ -1,35 +1,45 @@
 {% extends 'base.html' %} {% load static %} {% block title %} Diamond Band -
 Premium Christian Live Music Experience {% endblock %} {% block content %}
-<!-- Hero Section -->
+<!-- Hero Section with Single Background Image -->
 <section class="hero" id="home">
+  <div class="hero-background">
+    <img
+      src="{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}"
+      alt="Diamond Band Performance"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Hero Content -->
   <div class="container">
     <div class="row align-items-center min-vh-100">
-      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
-        <h1 class="hero-title mb-4">
-          Welcome to <span class="text-gold">Diamond Band</span>
-        </h1>
-        <p class="lead mb-4">
-          Professional Christian band bringing premium live music experiences to
-          your weddings, corporate events, and special occasions.
-        </p>
-        <div class="hero-buttons">
-          <a
-            href="{% url 'booking' %}"
-            class="btn btn-primary btn-lg me-3 mb-3"
-          >
-            <i class="fas fa-calendar-check me-2"></i>Book Us Now
-          </a>
-          <a
-            href="{% url 'gallery' %}"
-            class="btn btn-outline-primary btn-lg mb-3"
-          >
-            <i class="fas fa-play me-2"></i>Watch Our Performances
-          </a>
+      <div class="col-lg-10 col-xl-8 mx-auto text-center" data-aos="fade-up">
+        <div class="hero-content">
+          <h1 class="hero-title mb-4">
+            Welcome to <span class="text-gold">Diamond Band</span>
+          </h1>
+          <p class="lead mb-4">
+            Professional Christian band bringing premium live music experiences
+            to your weddings, corporate events, and special occasions.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="{% url 'booking' %}"
+              class="btn btn-primary btn-lg me-3 mb-3"
+            >
+              <i class="fas fa-calendar-check me-2"></i>Book Us Now
+            </a>
+            <a
+              href="{% url 'gallery' %}"
+              class="btn btn-outline-primary btn-lg mb-3"
+            >
+              <i class="fas fa-play me-2"></i>Watch Our Performances
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="hero-overlay"></div>
 </section>
 
 <!-- Quick Stats -->
