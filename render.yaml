@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: diamond-band
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn diamond_band_website.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
