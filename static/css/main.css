@@ -23,6 +23,11 @@ body {
   line-height: 1.6;
   color: var(--medium-gray);
   background-color: var(--primary-white);
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 h1,
@@ -871,4 +876,21 @@ h6 {
     opacity: 1;
     background: rgba(0, 0, 0, 0.6);
   }
+}
+
+/* Prevent horizontal scroll on all devices */
+.container,
+.container-fluid {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[class*="col-"] {
+  padding-left: 15px;
+  padding-right: 15px;
 }
