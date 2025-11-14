@@ -2,15 +2,19 @@
 # exit on error
 set -o errexit
 
-# Install Python dependencies
+echo "=== Installing Python dependencies ==="
 pip install -r requirements.txt
 
-# Install Node.js dependencies and build React components
+echo "=== Installing Node dependencies ==="
 npm install
+
+echo "=== Building React components ==="
 npm run build
 
-# Collect static files
-python manage.py collectstatic --no-input
+echo "=== Collecting static files ==="
+python manage.py collectstatic --no-input --clear
 
-# Run database migrations
-python manage.py migrate
+echo "=== Running database migrations ==="
+python manage.py migrate --no-input
+
+echo "=== Build completed successfully ==="
