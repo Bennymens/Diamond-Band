@@ -179,7 +179,12 @@ WEBPACK_LOADER = {
 
 # Production Security Settings
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    # Trust Render's proxy headers for HTTPS
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    
+    # Don't force SSL redirect - Render handles this
+    # SECURE_SSL_REDIRECT = True  # Disabled to prevent redirect loop
+    
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
