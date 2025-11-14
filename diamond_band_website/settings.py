@@ -28,7 +28,14 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-5h@-zekp7)a*43^z@^+w-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+# For initial Render deployment debugging, you can temporarily enable this:
+# Set DEBUG=True in Render environment variables to see error details
+# REMOVE THIS AFTER SUCCESSFUL DEPLOYMENT!
+
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com').split(',')
+
+# Add wildcard for any onrender.com subdomain
+ALLOWED_HOSTS.append('.onrender.com')
 
 
 # Application definition
@@ -193,3 +200,25 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+
+# Logging Configuration for Production Debugging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
