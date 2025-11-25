@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Booking Submitted - Diamond Band{% endblock %}
+
+{% block meta_description %}Your booking inquiry has been submitted successfully. Diamond Band will contact you within 24 hours with your personalized quote.{% endblock %}
+
+{% block content %}
+<!-- Success Hero Section -->
+<section class="hero" id="success-hero">
+  <div class="hero-background">
+    <img
+      src="{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}"
+      alt="Diamond Band Success"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <div class="success-content">
+          <div class="success-icon mb-4">
+            <i class="fas fa-check-circle fa-5x text-gold"></i>
+          </div>
+          <h1 class="hero-title mb-4">
+            Booking Inquiry <span class="text-gold">Submitted!</span>
+          </h1>
+          <p class="lead mb-4">
+            Thank you for choosing Diamond Band! We've received your booking inquiry
+            and will contact you within 24 hours with a personalized quote and next steps.
+          </p>
+          <div class="success-details">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-clock text-gold mb-2"></i>
+                  <h5>Response Time</h5>
+                  <p>Within 24 hours</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-phone text-gold mb-2"></i>
+                  <h5>Follow Up</h5>
+                  <p>Personal consultation</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-file-contract text-gold mb-2"></i>
+                  <h5>Next Steps</h5>
+                  <p>Custom quote & contract</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="success-actions mt-4">
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg me-3">
+              <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+            <a href="{% url 'gallery' %}" class="btn btn-outline-primary btn-lg">
+              <i class="fas fa-images me-2"></i>View Our Work
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Happens Next -->
+<section class="section bg-light" id="next-steps">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title">What Happens <span class="text-gold">Next</span>?</h2>
+      <p class="lead">Here's our process to ensure your event is perfect</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="step-card text-center">
+          <div class="step-number">1</div>
+          <h4>Review & Quote</h4>
+          <p>We review your requirements and send a detailed quote within 24 hours</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="step-card text-center">
+          <div class="step-number">2</div>
+          <h4>Contract & Deposit</h4>
+          <p>Once approved, we send a contract and collect a 50% deposit to secure your date</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="step-card text-center">
+          <div class="step-number">3</div>
+          <h4>Planning & Prep</h4>
+          <p>We discuss details, song selections, and coordinate with your venue</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="step-card text-center">
+          <div class="step-number">4</div>
+          <h4>Show Time!</h4>
+          <p>We arrive early for setup and deliver an unforgettable musical experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Info -->
+<section class="section section-dark" id="contact-info">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8" data-aos="fade-right">
+        <h2 class="mb-3">Questions About Your Booking?</h2>
+        <p class="lead mb-4">
+          We're here to help! If you have any questions about your inquiry or need to make changes,
+          don't hesitate to reach out. We're committed to making your event planning stress-free.
+        </p>
+        <div class="contact-methods">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="contact-method">
+                <i class="fas fa-envelope text-gold me-3"></i>
+                <div>
+                  <strong>Email Us</strong><br>
+                  <a href="mailto:info@diamondband.com" class="text-light">info@diamondband.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="contact-method">
+                <i class="fas fa-phone text-gold me-3"></i>
+                <div>
+                  <strong>Call Us</strong><br>
+                  <a href="tel:+1234567890" class="text-light">+1 (234) 567-8900</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+        <div class="success-highlight">
+          <div class="highlight-icon mb-3">
+            <i class="fas fa-star fa-3x text-gold"></i>
+          </div>
+          <h4>Thank You!</h4>
+          <p class="text-light">Your trust means everything to us. We're excited to be part of your special occasion!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 60vh;
+  }
+
+  .min-vh-75 {
+    min-height: 75vh;
+  }
+
+  .success-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    color: #333;
+  }
+
+  .success-icon {
+    animation: checkmark 0.8s ease-in-out;
+  }
+
+  @keyframes checkmark {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .detail-item {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .detail-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .success-actions .btn {
+    transition: all 0.3s ease;
+  }
+
+  .success-actions .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #d4af37, #b8962e);
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .success-highlight {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    border: 2px solid #d4af37;
+  }
+
+  .highlight-icon {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  @media (max-width: 768px) {
+    .success-content {
+      padding: 2rem 1rem;
+    }
+
+    .step-card {
+      margin-bottom: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+</content>
+<parameter name="filePath">C:\Users\PC\OneDrive\Desktop\Diamond band\templates\main\booking_success.html

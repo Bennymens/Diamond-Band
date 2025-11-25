@@ -10,7 +10,7 @@ class BookingInquiryForm(forms.ModelForm):
         fields = [
             'client_name', 'client_email', 'client_phone', 'client_company',
             'event_type', 'event_title', 'event_date', 'event_start_time', 
-            'event_end_time', 'event_location', 'expected_guests',
+            'event_end_time', 'event_location', 'expected_guests', 'package',
             'service_requested', 'special_requirements', 'budget_range',
             'how_heard_about_us'
         ]
@@ -21,6 +21,7 @@ class BookingInquiryForm(forms.ModelForm):
             'service_requested': forms.Textarea(attrs={'rows': 4}),
             'special_requirements': forms.Textarea(attrs={'rows': 3}),
             'event_location': forms.Textarea(attrs={'rows': 2}),
+            'package': forms.Select(attrs={'class': 'form-select'}),
         }
     
     def __init__(self, *args, **kwargs):
@@ -53,12 +54,13 @@ class BookingInquiryForm(forms.ModelForm):
             'event_location',
             Row(
                 Column('expected_guests', css_class='form-group col-md-6 mb-3'),
-                Column('budget_range', css_class='form-group col-md-6 mb-3'),
+                Column('package', css_class='form-group col-md-6 mb-3'),
                 css_class='form-row'
             ),
             HTML('<div class="row"><div class="col-12"><h4 class="mb-4 mt-4 text-gold">Service Requirements</h4></div></div>'),
             'service_requested',
             'special_requirements',
+            'budget_range',
             'how_heard_about_us',
             HTML('<div class="text-center mt-4">'),
             Submit('submit', 'Submit Booking Inquiry', css_class='btn btn-primary btn-lg px-5'),

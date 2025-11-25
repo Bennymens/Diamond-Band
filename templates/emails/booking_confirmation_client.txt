@@ -1,0 +1,33 @@
+Subject: Booking Confirmation - Diamond Band ({{ booking.booking_reference }})
+
+Dear {{ booking.client_name }},
+
+Thank you for choosing Diamond Band! We're excited to help make your {{ booking.get_event_type_display }} unforgettable with our premium Christian live music experience.
+
+BOOKING REFERENCE: {{ booking.booking_reference }}
+
+EVENT DETAILS:
+- Event Type: {{ booking.get_event_type_display }}
+- Date: {{ booking.event_date|date:"l, F j, Y" }}
+- Time: {{ booking.event_start_time|time:"g:i A" }} - {{ booking.event_end_time|time:"g:i A" }}
+- Location: {{ booking.event_location }}
+- Expected Guests: {{ booking.expected_guests }}
+- Package Selected: {{ booking.get_package_display }}
+- Total Amount: ${{ booking.total_amount }}
+
+WHAT HAPPENS NEXT:
+1. Review (24 hours): We'll review your requirements and prepare a customized proposal
+2. Contract & Deposit: If you approve, we'll send a contract and collect a deposit to secure your date
+3. Planning: Detailed planning and coordination begins
+4. Show Time: We arrive early and deliver an unforgettable performance!
+
+QUESTIONS?
+Phone: (555) 123-4567
+Email: info@diamondband.com
+
+Thank you for trusting Diamond Band with your special occasion!
+
+Best regards,
+Diamond Band Team
+Premium Christian Live Music Experience
+www.diamondband.com

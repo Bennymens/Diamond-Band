@@ -167,6 +167,12 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 # Default from email
 DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER', default='noreply@diamondband.com')
 
+# Band email for booking notifications
+BAND_EMAIL = config('BAND_EMAIL', default='bookings@diamondband.com')
+
+# Site URL for email links
+SITE_URL = config('SITE_URL', default='https://diamond-band-3.onrender.com')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

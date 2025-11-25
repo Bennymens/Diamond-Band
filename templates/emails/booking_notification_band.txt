@@ -1,0 +1,35 @@
+Subject: New Booking Inquiry - {{ booking.client_name }} ({{ booking.event_date }})
+
+NEW BOOKING INQUIRY RECEIVED
+
+Client: {{ booking.client_name }}
+Email: {{ booking.client_email }}
+Phone: {{ booking.client_phone }}
+Reference: {{ booking.booking_reference }}
+
+EVENT DETAILS:
+- Type: {{ booking.get_event_type_display }}
+- Title: {{ booking.event_title }}
+- Date: {{ booking.event_date|date:"F j, Y" }}
+- Time: {{ booking.event_start_time|time:"g:i A" }} - {{ booking.event_end_time|time:"g:i A" }}
+- Location: {{ booking.event_location }}
+- Guests: {{ booking.expected_guests }}
+- Package: {{ booking.get_package_display }}
+- Amount: ${{ booking.total_amount }}
+
+SERVICE REQUESTED:
+{{ booking.service_requested }}
+
+{% if booking.special_requirements %}
+SPECIAL REQUIREMENTS:
+{{ booking.special_requirements }}
+{% endif %}
+
+ADDITIONAL INFO:
+- Budget Range: {{ booking.budget_range }}
+- Heard About Us: {{ booking.heard_about_us }}
+- Submitted: {{ booking.created_at|date:"M j, Y g:i A" }}
+
+ADMIN LINK: {{ admin_url }}
+
+Please review this booking inquiry and respond to the client within 24 hours.

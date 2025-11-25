@@ -103,7 +103,7 @@ class GalleryItem(models.Model):
 class BookingInquiry(models.Model):
     """Booking inquiries from clients"""
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
+        ('pending', 'Pending Review'),
         ('confirmed', 'Confirmed'),
         ('cancelled', 'Cancelled'),
         ('completed', 'Completed'),
@@ -117,6 +117,12 @@ class BookingInquiry(models.Model):
         ('concert', 'Concert/Show'),
         ('festival', 'Festival'),
         ('other', 'Other'),
+    ]
+    
+    PACKAGE_CHOICES = [
+        ('basic', 'Basic Package - $1,500'),
+        ('premium', 'Premium Package - $2,500'),
+        ('vip', 'VIP Package - $3,500+'),
     ]
     
     # Client Info
@@ -134,6 +140,11 @@ class BookingInquiry(models.Model):
     event_location = models.TextField()
     expected_guests = models.PositiveIntegerField()
     
+    # Package Selection
+    package = models.CharField(max_length=20, choices=PACKAGE_CHOICES, default='basic')
+    booking_reference = models.CharField(max_length=20, unique=True, blank=True)
+    total_amount = models.DecimalField(max_digits=8, decimal_places=2, default=1500.00)
+    
     # Requirements
     service_requested = models.TextField()
     special_requirements = models.TextField(blank=True)
@@ -145,9 +156,29 @@ class BookingInquiry(models.Model):
     admin_notes = models.TextField(blank=True)
     quoted_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         ordering = ['-created_at']
+    
+    def save(self, *args, **kwargs):
+        if not self.booking_reference:
+            # Generate unique booking reference
+            import uuid
+            self.booking_reference = f"DB-{uuid.uuid4().hex[:8].upper()}"
+        
+        # Set price based on package
+        package_prices = {
+            'basic': 1500.00,
+            'premium': 2500.00,
+            'vip': 3500.00
+        }
+        self.total_amount = package_prices.get(self.package, 1500.00)
+        
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f"{self.booking_reference} - {self.client_name} - {self.event_type}"
     
     def __str__(self):
         return f"{self.client_name} - {self.event_title}"

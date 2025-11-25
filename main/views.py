@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.db.models import Q
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.conf import settings
 from .models import (
     BandMember, Service, GalleryItem, BookingInquiry, 
     ContactMessage, BlogPost, Testimonial, SiteSettings
@@ -111,17 +114,63 @@ def gallery_filter_ajax(request):
 
 class BookingView(FormView):
     """Booking page view"""
-    template_name = 'main/booking.html'
+    template_name = 'main/Booking.html'
     form_class = BookingInquiryForm
     success_url = reverse_lazy('booking_success')
     
     def form_valid(self, form):
-        inquiry = form.save()
+        # Save the booking
+        booking = form.save()
+        
+        # Send confirmation emails
+        self.send_booking_emails(booking)
+        
         messages.success(
             self.request, 
-            'Your booking inquiry has been submitted successfully! We will contact you within 24 hours.'
+            f'Thank you {booking.client_name}! Your booking inquiry has been submitted. '
+            f'Check your email for confirmation (Reference: {booking.booking_reference})'
         )
+        
         return super().form_valid(form)
+    
+    def send_booking_emails(self, booking):
+        """Send confirmation emails to both client and band"""
+        
+        # Email to client
+        client_subject = f'Booking Confirmation - Diamond Band ({booking.booking_reference})'
+        client_context = {
+            'booking': booking,
+            'band_logo_url': f"{settings.SITE_URL}/static/images/band-logo.png"
+        }
+        client_html = render_to_string('emails/booking_confirmation_client.html', client_context)
+        client_text = render_to_string('emails/booking_confirmation_client.txt', client_context)
+        
+        send_mail(
+            subject=client_subject,
+            message=client_text,
+            html_message=client_html,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[booking.client_email],
+            fail_silently=True
+        )
+        
+        # Email to band
+        band_subject = f'New Booking Inquiry - {booking.client_name} ({booking.event_date})'
+        band_context = {
+            'booking': booking,
+            'admin_url': f"{settings.SITE_URL}/admin/main/bookinginquiry/{booking.id}/change/"
+        }
+        band_html = render_to_string('emails/booking_notification_band.html', band_context)
+        band_text = render_to_string('emails/booking_notification_band.txt', band_context)
+        
+        send_mail(
+            subject=band_subject,
+            message=band_text,
+            html_message=band_html,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.BAND_EMAIL],
+            fail_silently=True
+        )
 
 
 def booking_success(request):
