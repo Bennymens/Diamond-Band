@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Message Sent - Diamond Band{% endblock %}
+
+{% block meta_description %}Your message has been sent successfully. Diamond Band will respond within 24 hours. Thank you for contacting us.{% endblock %}
+
+{% block content %}
+<!-- Success Hero Section -->
+<section class="hero" id="success-hero">
+  <div class="hero-background">
+    <img
+      src="{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}"
+      alt="Diamond Band Message Sent"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <div class="success-content">
+          <div class="success-icon mb-4">
+            <i class="fas fa-paper-plane fa-5x text-gold"></i>
+          </div>
+          <h1 class="hero-title mb-4">
+            Message <span class="text-gold">Sent!</span>
+          </h1>
+          <p class="lead mb-4">
+            Thank you for contacting Diamond Band! We've received your message
+            and will get back to you within 24 hours with a response.
+          </p>
+          <div class="success-details">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-clock text-gold mb-2"></i>
+                  <h5>Response Time</h5>
+                  <p>Within 24 hours</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-envelope text-gold mb-2"></i>
+                  <h5>Check Your Email</h5>
+                  <p>We'll reply directly</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="detail-item">
+                  <i class="fas fa-phone text-gold mb-2"></i>
+                  <h5>Urgent Matters</h5>
+                  <p>Call us directly</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="success-actions mt-4">
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg me-3">
+              <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+            <a href="{% url 'booking' %}" class="btn btn-outline-primary btn-lg">
+              <i class="fas fa-calendar me-2"></i>Book Event
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What We Do Next -->
+<section class="section bg-light" id="next-steps">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title">What Happens <span class="text-gold">Next</span>?</h2>
+      <p class="lead">Our process for handling your inquiry</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="step-card text-center">
+          <div class="step-number">1</div>
+          <h4>Review Your Message</h4>
+          <p>Our team carefully reviews your inquiry and gathers any additional information needed</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="step-card text-center">
+          <div class="step-number">2</div>
+          <h4>Prepare Response</h4>
+          <p>We prepare a detailed response addressing all your questions and requirements</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="step-card text-center">
+          <div class="step-number">3</div>
+          <h4>Follow Up</h4>
+          <p>We send our response and follow up if needed to ensure all your questions are answered</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Options -->
+<section class="section section-dark" id="contact-options">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title">Other Ways to <span class="text-gold">Reach Us</span></h2>
+      <p class="lead text-light">While you wait for our response, feel free to contact us through these channels</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mb-4" data-aos="fade-right">
+        <div class="contact-option-card">
+          <div class="card-icon mb-3">
+            <i class="fas fa-phone fa-3x text-gold"></i>
+          </div>
+          <h4>Phone Support</h4>
+          <p>For immediate assistance or urgent inquiries, call us directly during business hours.</p>
+          <div class="contact-info">
+            <strong>+1 (234) 567-8900</strong><br>
+            <small>Mon-Fri: 9AM-6PM EST</small>
+          </div>
+          <a href="tel:+1234567890" class="btn btn-outline-primary mt-3">
+            <i class="fas fa-phone me-2"></i>Call Now
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4" data-aos="fade-left">
+        <div class="contact-option-card">
+          <div class="card-icon mb-3">
+            <i class="fas fa-envelope fa-3x text-gold"></i>
+          </div>
+          <h4>Email Support</h4>
+          <p>Send us an email anytime. We monitor our inbox regularly and respond promptly.</p>
+          <div class="contact-info">
+            <strong>info@diamondband.com</strong><br>
+            <small>24/7 email monitoring</small>
+          </div>
+          <a href="mailto:info@diamondband.com" class="btn btn-outline-primary mt-3">
+            <i class="fas fa-envelope me-2"></i>Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="text-center mt-5" data-aos="fade-up">
+      <h4 class="mb-4">Follow Us for Updates</h4>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-link" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-link" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="#" class="social-link" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Reminder -->
+<section class="section bg-light" id="faq-reminder">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8" data-aos="fade-right">
+        <h2 class="mb-3">Have More Questions?</h2>
+        <p class="lead mb-4">
+          Check out our comprehensive FAQ section for quick answers to common questions,
+          or feel free to send us another message anytime.
+        </p>
+        <a href="{% url 'contact' %}#contact-faq" class="btn btn-primary btn-lg">
+          <i class="fas fa-question-circle me-2"></i>View FAQ
+        </a>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+        <div class="faq-highlight">
+          <i class="fas fa-lightbulb fa-4x text-gold"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 60vh;
+  }
+
+  .min-vh-75 {
+    min-height: 75vh;
+  }
+
+  .success-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    color: #333;
+  }
+
+  .success-icon {
+    animation: sendMessage 1s ease-in-out;
+  }
+
+  @keyframes sendMessage {
+    0% { transform: translateY(20px); opacity: 0; }
+    50% { transform: translateY(-10px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .detail-item {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .detail-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .success-actions .btn {
+    transition: all 0.3s ease;
+  }
+
+  .success-actions .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #d4af37, #b8962e);
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+  }
+
+  .contact-option-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    height: 100%;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .contact-info {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: 50px;
+    height: 50px;
+    background: #d4af37;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    background: #b8962e;
+    transform: scale(1.1);
+  }
+
+  .faq-highlight {
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .success-content {
+      padding: 2rem 1rem;
+    }
+
+    .step-card {
+      margin-bottom: 2rem;
+    }
+
+    .contact-option-card {
+      margin-bottom: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+</content>
+<parameter name="filePath">C:\Users\PC\OneDrive\Desktop\Diamond band\templates\main\contact_success.html
