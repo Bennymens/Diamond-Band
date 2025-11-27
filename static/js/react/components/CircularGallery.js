@@ -390,16 +390,16 @@ class App {
   createMedias(items, bend = 1, textColor, borderRadius, font) {
     const defaultItems = [
       {
-        image: `https://picsum.photos/seed/1/800/600?grayscale`,
-        text: "Bridge",
+        image: `/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.01_47426ab4.jpg`,
+        text: "Caleb - Drummer",
       },
       {
-        image: `https://picsum.photos/seed/2/800/600?grayscale`,
-        text: "Desk Setup",
+        image: `/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.02_946de9dd.jpg`,
+        text: "Jonthan - Saxophonist",
       },
       {
-        image: `https://picsum.photos/seed/3/800/600?grayscale`,
-        text: "Waterfall",
+        image: `/static/images/WhatsApp%20Image%202025-10-14%20at%2021.24.57_30dfad26.jpg`,
+        text: "Josiah - Bassist",
       },
       {
         image: `https://picsum.photos/seed/4/800/600?grayscale`,
