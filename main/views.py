@@ -78,7 +78,7 @@ def gallery(request):
             'year': year,
         }
     }
-    return render(request, 'main/gallery.html', context)
+    return render(request, 'main/Gallery.html', context)
 
 
 def gallery_filter_ajax(request):

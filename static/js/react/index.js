@@ -8,6 +8,7 @@ import ContactForm from "./components/ContactForm";
 import TestimonialSlider from "./components/TestimonialSlider";
 import AnimatedButton from "./components/AnimatedButton";
 import CircularGallery from "./components/CircularGallery";
+import Gallery from "./components/Gallery";
 
 // Initialize React components when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
@@ -69,5 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("CircularGallery rendered");
   } else {
     console.error("Could not find circular-gallery-container element");
+  }
+
+  // Gallery Component
+  const galleryContainer = document.getElementById("gallery-container");
+  if (galleryContainer) {
+    const root = ReactDOM.createRoot(galleryContainer);
+    root.render(<Gallery />);
   }
 });
