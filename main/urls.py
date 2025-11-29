@@ -11,6 +11,7 @@ urlpatterns = [
     path('booking/success/', views.booking_success, name='booking_success'),
     path('contact/', views.ContactView.as_view(), name='contact'),
     path('contact/success/', views.contact_success, name='contact_success'),
-    path('blog/', views.blog, name='blog'),
-    path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
+    path('news/', views.blog, name='news'),
+    path('news/<slug:slug>/', views.blog_detail, name='news_detail'),
+    path('first-love-music/', views.first_love_music, name='first_love_music'),
 ]

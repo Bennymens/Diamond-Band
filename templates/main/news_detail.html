@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Diamond Band News{% endblock %}
+
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="min-height: 40vh;">
+  <div class="hero-background">
+    {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+    {% else %}
+    <img src="{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}" alt="Diamond Band News">
+    {% endif %}
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-50">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <div class="hero-content">
+          <h1 class="hero-title mb-3">{{ post.title }}</h1>
+          <p class="lead mb-3">{{ post.excerpt }}</p>
+          <div class="post-meta text-light">
+            <small>
+              <i class="fas fa-calendar me-2"></i>{{ post.published_date|date:"F j, Y" }}
+              {% if "event" in post.title|lower or "concert" in post.title|lower %}
+              <span class="badge bg-primary ms-3">EVENT</span>
+              {% endif %}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Main Article -->
+      <div class="col-lg-8">
+        <article class="news-article">
+          {% if post.featured_image %}
+          <div class="featured-image mb-4">
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded shadow">
+          </div>
+          {% endif %}
+
+          <div class="article-content">
+            {{ post.content|safe }}
+          </div>
+
+          <!-- Article Tags/Categories -->
+          <div class="article-tags mt-4">
+            {% if "event" in post.title|lower or "concert" in post.title|lower or "tour" in post.title|lower %}
+            <span class="badge bg-primary me-2">Events</span>
+            {% endif %}
+            {% if "music" in post.title|lower or "album" in post.title|lower or "release" in post.title|lower %}
+            <span class="badge bg-success me-2">Music</span>
+            {% endif %}
+            {% if "diamond band" in post.title|lower %}
+            <span class="badge bg-gold text-dark me-2">Diamond Band</span>
+            {% endif %}
+            {% if "first love" in post.title|lower %}
+            <span class="badge bg-warning text-dark me-2">First Love Music</span>
+            {% endif %}
+          </div>
+
+          <!-- Social Share -->
+          <div class="social-share mt-4 pt-4 border-top">
+            <h6 class="mb-3">Share this article:</h6>
+            <div class="d-flex gap-2">
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                <i class="fab fa-facebook-f me-1"></i>Facebook
+              </a>
+              <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title|urlencode }}" target="_blank" class="btn btn-outline-info btn-sm">
+                <i class="fab fa-twitter me-1"></i>Twitter
+              </a>
+              <a href="https://wa.me/?text={{ post.title|urlencode }}%20{{ request.build_absolute_uri }}" target="_blank" class="btn btn-outline-success btn-sm">
+                <i class="fab fa-whatsapp me-1"></i>WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Related Articles -->
+        {% if related_posts %}
+        <div class="related-articles mt-5">
+          <h4 class="mb-4">Related Articles</h4>
+          <div class="row">
+            {% for related_post in related_posts %}
+            <div class="col-md-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                {% if related_post.featured_image %}
+                <img src="{{ related_post.featured_image.url }}" class="card-img-top" alt="{{ related_post.title }}" style="height: 150px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                  <h6 class="card-title">
+                    <a href="{% url 'news_detail' related_post.slug %}" class="text-decoration-none">{{ related_post.title }}</a>
+                  </h6>
+                  <p class="card-text small text-muted">{{ related_post.excerpt|truncatewords:15 }}</p>
+                  <small class="text-muted">{{ related_post.published_date|date:"M j, Y" }}</small>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <!-- Latest News -->
+        <div class="sidebar-widget mb-4">
+          <h5 class="widget-title mb-3">Latest News</h5>
+          {% for latest_post in related_posts|slice:":5" %}
+          <div class="latest-news-item mb-3 pb-3 border-bottom">
+            <h6 class="mb-1">
+              <a href="{% url 'news_detail' latest_post.slug %}" class="text-decoration-none">{{ latest_post.title }}</a>
+            </h6>
+            <small class="text-muted">{{ latest_post.published_date|date:"M j, Y" }}</small>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Quick Links -->
+        <div class="sidebar-widget mb-4">
+          <h5 class="widget-title mb-3">Quick Links</h5>
+          <div class="list-group list-group-flush">
+            <a href="{% url 'news' %}" class="list-group-item list-group-item-action px-0">
+              <i class="fas fa-newspaper me-2 text-gold"></i>All News
+            </a>
+            <a href="{% url 'booking' %}" class="list-group-item list-group-item-action px-0">
+              <i class="fas fa-calendar-check me-2 text-gold"></i>Book Events
+            </a>
+            <a href="{% url 'gallery' %}" class="list-group-item list-group-item-action px-0">
+              <i class="fas fa-images me-2 text-gold"></i>Gallery
+            </a>
+            <a href="{% url 'contact' %}" class="list-group-item list-group-item-action px-0">
+              <i class="fas fa-envelope me-2 text-gold"></i>Contact Us
+            </a>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="sidebar-widget">
+          <div class="card bg-primary text-white">
+            <div class="card-body text-center">
+              <h6 class="card-title mb-3">Stay Updated</h6>
+              <p class="card-text small mb-3">Get the latest news and updates from Diamond Band</p>
+              <form>
+                <div class="mb-2">
+                  <input type="email" class="form-control form-control-sm" placeholder="Your email" required>
+                </div>
+                <button type="submit" class="btn btn-light btn-sm w-100">
+                  <i class="fas fa-envelope me-1"></i>Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h3 class="mb-3">Experience Diamond Band Live</h3>
+        <p class="lead mb-0">Book us for your next event and create unforgettable musical memories.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">
+          <i class="fas fa-calendar-check me-2"></i>Book Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+  color: var(--primary-black);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-content p {
+  margin-bottom: 1.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.featured-image img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.article-tags .badge {
+  font-size: 0.75rem;
+}
+
+.social-share .btn {
+  transition: all 0.3s ease;
+}
+
+.social-share .btn:hover {
+  transform: translateY(-2px);
+}
+
+.sidebar-widget {
+  background: var(--primary-white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.widget-title {
+  color: var(--primary-black);
+  border-bottom: 2px solid var(--primary-gold);
+  padding-bottom: 0.5rem;
+}
+
+.latest-news-item:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.related-articles .card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+</style>
+{% endblock %}

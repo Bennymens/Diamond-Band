@@ -1,0 +1,440 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}News - Diamond Band{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Background Image -->
+<section class="hero" id="news-hero">
+  <div class="hero-background">
+    <img
+      src="{% static 'images/WhatsApp Image 2025-10-14 at 21.24.57_3a657a25.jpg' %}"
+      alt="Diamond Band News"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-10 col-xl-8 mx-auto text-center" data-aos="fade-up">
+        <div class="hero-content">
+          <h1 class="hero-title mb-4">
+            Latest News & <span class="text-gold">Updates</span>
+          </h1>
+          <p class="lead mb-4">
+            Stay updated with Diamond Band's latest releases, events, and music news.
+            Discover our journey in Christian and jazz music.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="#featured"
+              class="btn btn-primary btn-lg me-3 mb-3"
+            >
+              <i class="fas fa-newspaper me-2"></i>Read Latest News
+            </a>
+            <a
+              href="{% url 'booking' %}"
+              class="btn btn-outline-primary btn-lg mb-3"
+            >
+              <i class="fas fa-calendar-check me-2"></i>Book Our Events
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Diamond Band News Section -->
+<section class="py-5" id="featured">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-5">Diamond Band News</h2>
+            </div>
+        </div>
+
+        <!-- Featured Posts -->
+        {% if featured_posts %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4">Featured Stories</h3>
+            </div>
+            {% for post in featured_posts %}
+            {% if "First Love" not in post.title %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt|truncatewords:20 }}</p>
+                        <a href="{% url 'news_detail' post.slug %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Upcoming Events Section -->
+        {% for post in posts %}
+        {% if "event" in post.title|lower or "concert" in post.title|lower or "tour" in post.title|lower %}
+        {% if forloop.first %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="text-center mb-4">Upcoming Events</h3>
+            </div>
+        </div>
+        <div class="row mb-5">
+        {% endif %}
+            <!-- Event Card -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-primary">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="event-badge mb-2">
+                            <span class="badge bg-primary">EVENT</span>
+                        </div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <div class="event-details mb-3">
+                            {% if "December 20, 2025" in post.content %}
+                            <p class="mb-1"><i class="fas fa-calendar me-2"></i><strong>Date:</strong> December 20, 2025</p>
+                            {% endif %}
+                            {% if "7:00 PM" in post.content %}
+                            <p class="mb-1"><i class="fas fa-clock me-2"></i><strong>Time:</strong> 7:00 PM</p>
+                            {% endif %}
+                            {% if "Community Center Auditorium" in post.content %}
+                            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i><strong>Venue:</strong> Community Center Auditorium</p>
+                            {% endif %}
+                            {% if "$25" in post.content %}
+                            <p class="mb-1"><i class="fas fa-ticket-alt me-2"></i><strong>Price:</strong> $25</p>
+                            {% endif %}
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'booking' %}" class="btn btn-primary">
+                                <i class="fas fa-calendar-check me-2"></i>Book Now
+                            </a>
+                            <a href="{% url 'news_detail' post.slug %}" class="btn btn-outline-primary btn-sm">More Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% if forloop.last %}
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        <!-- Regular News Articles -->
+        <div class="row">
+            {% for post in posts %}
+            {% if "event" not in post.title|lower and "concert" not in post.title|lower and "tour" not in post.title|lower %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.excerpt|truncatewords:15 }}</p>
+                        <a href="{% url 'news_detail' post.slug %}" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- First Love Music Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Clickable Card -->
+                <a href="{% url 'first_love_music' %}" class="text-decoration-none section-link">
+                    <div class="card shadow-lg border-0 music-card">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h2 class="card-title mb-3">First Love Music</h2>
+                                    <p class="card-text lead">
+                                        Experience our soulful Christian music that touches hearts and uplifts spirits.
+                                        Our debut single "Eternal Flame" is now available on all major streaming platforms.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1471478331149-c72f17e33c73?w=400"
+                                     alt="First Love Music" class="card-img h-100" style="object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Streaming Links Below Card -->
+                <div class="streaming-links text-center mt-4">
+                    <h5 class="mb-3">Listen Now:</h5>
+                    <div class="social-links d-flex justify-content-center gap-3">
+                        <a href="https://open.spotify.com/artist/2416FtiudAa79lko2LIVii?autoplay=true" target="_blank" title="Spotify" class="streaming-link spotify-link">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                        <a href="https://music.apple.com/gh/artist/first-love-music/1541756750" target="_blank" title="Apple Music" class="streaming-link apple-link">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCxMLdxktAAJCCjIx2ADJFNA?feature=gws_kp_artist&feature=gws_kp_artist" target="_blank" title="YouTube" class="streaming-link youtube-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.deezer.com/artist/93221382" target="_blank" title="Deezer" class="streaming-link deezer-link">
+                            <i class="fas fa-compact-disc"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Music Industry News Section -->
+<section class="py-5 bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-5">Music Industry <span class="text-gold">News</span></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Music News Card 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 bg-secondary text-light border-0">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400" class="card-img-top" alt="Music Industry" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <span class="badge bg-gold text-dark">INDUSTRY</span>
+                        </div>
+                        <h5 class="card-title">Christian Music Awards 2025 Nominations Announced</h5>
+                        <p class="card-text">The Dove Awards have revealed their 2025 nominees, featuring breakthrough artists and established legends in Christian music.</p>
+                        <small class="text-muted">November 15, 2025</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music News Card 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 bg-secondary text-light border-0">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400" class="card-img-top" alt="Jazz Music" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <span class="badge bg-gold text-dark">JAZZ</span>
+                        </div>
+                        <h5 class="card-title">Jazz Festivals Return with Record Attendance</h5>
+                        <p class="card-text">Major jazz festivals across the country report unprecedented attendance as live music makes a triumphant comeback.</p>
+                        <small class="text-muted">November 12, 2025</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music News Card 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 bg-secondary text-light border-0">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400" class="card-img-top" alt="Streaming Music" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <span class="badge bg-gold text-dark">STREAMING</span>
+                        </div>
+                        <h5 class="card-title">New Streaming Platform Launches Christian Music Focus</h5>
+                        <p class="card-text">FaithStream announces dedicated Christian and gospel music streaming service with exclusive artist content.</p>
+                        <small class="text-muted">November 10, 2025</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-outline-gold btn-lg">
+                <i class="fas fa-external-link-alt me-2"></i>View More Industry News
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Stay Updated with Diamond Band</h3>
+                <p class="mb-0 lead">Get the latest news, event announcements, and music releases delivered to your inbox.</p>
+            </div>
+            <div class="col-lg-4">
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-light">
+                        <i class="fas fa-envelope me-2"></i>Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.btn-outline-gold {
+    border-color: #FFD700;
+    color: #FFD700;
+}
+
+.btn-outline-gold:hover {
+    background-color: #FFD700;
+    color: #000;
+}
+
+/* Streaming Platform Brand Logos */
+.streaming-link {
+    background-color: var(--dark-gray) !important;
+    color: white !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.streaming-link:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.spotify-link {
+    background-color: #1DB954 !important;
+}
+
+.spotify-link:hover {
+    background-color: #1aa34a !important;
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.3) !important;
+}
+
+.apple-link {
+    background-color: #FC3C44 !important;
+}
+
+.apple-link:hover {
+    background-color: #e3353d !important;
+    box-shadow: 0 8px 25px rgba(252, 60, 68, 0.3) !important;
+}
+
+.youtube-link {
+    background-color: #FF0000 !important;
+}
+
+.youtube-link:hover {
+    background-color: #e60000 !important;
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3) !important;
+}
+
+.deezer-link {
+    background-color: #FF6B35 !important;
+}
+
+.deezer-link:hover {
+    background-color: #e55f2f !important;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3) !important;
+}
+
+/* Featured Event Card */
+.featured-event-card {
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.featured-event-card .card-img {
+    border-radius: 15px 0 0 15px;
+    min-height: 400px;
+}
+
+/* Event Cards */
+.event-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.event-card .card-header {
+    border-bottom: none;
+    font-weight: 600;
+}
+
+/* Date Circle */
+.date-circle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
+    color: var(--primary-black);
+    font-weight: bold;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-circle .day {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.date-circle .month {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+/* Event Details */
+.event-details p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.event-details i {
+    width: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .featured-event-card .row {
+        flex-direction: column;
+    }
+
+    .featured-event-card .card-img {
+        border-radius: 15px 15px 0 0;
+        min-height: 250px;
+    }
+
+    .date-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .date-circle .day {
+        font-size: 20px;
+    }
+}
+</style>
+{% endblock %}

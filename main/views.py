@@ -212,7 +212,7 @@ def blog(request):
         'posts': posts,
         'featured_posts': featured_posts,
     }
-    return render(request, 'main/blog.html', context)
+    return render(request, 'main/news.html', context)
 
 
 def blog_detail(request, slug):
@@ -224,4 +224,12 @@ def blog_detail(request, slug):
         'post': post,
         'related_posts': related_posts,
     }
-    return render(request, 'main/blog_detail.html', context)
+    return render(request, 'main/news_detail.html', context)
+
+
+def first_love_music(request):
+    """First Love Music dedicated page"""
+    context = {
+        'site_settings': SiteSettings.objects.first(),
+    }
+    return render(request, 'main/first_love_music.html', context)

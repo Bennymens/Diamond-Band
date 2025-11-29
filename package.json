@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "diamond-band",
   "version": "1.0.0",
   "description": "A professional Django-based website for Diamond Band, a Christian band specializing in live music performances for weddings, corporate events, and special occasions.",

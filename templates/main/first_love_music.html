@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}First Love Music - Diamond Band{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="first-love-hero">
+  <div class="hero-background">
+    <img
+      src="{% static 'images/ab67616d0000b273438eaad030b585a8c22a2179.jpeg' %}"
+      alt="First Love Music"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-10 col-xl-8 mx-auto text-center" data-aos="fade-up">
+        <div class="hero-content">
+          <!-- First Love Music Logo -->
+          <div class="flm-logo mb-4">
+            <img src="{% static 'images/flm.png' %}" alt="First Love Music Logo" class="img-fluid">
+          </div>
+          <h1 class="hero-title mb-4">
+            First Love <span class="text-gold">Music</span>
+          </h1>
+          <p class="lead mb-4">
+            Experience our soulful Christian music that touches hearts and uplifts spirits.
+            Our debut single "Eternal Flame" is now available on all major streaming platforms.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="#listen-now"
+              class="btn btn-primary btn-lg me-3 mb-3"
+            >
+              <i class="fas fa-play me-2"></i>Listen Now
+            </a>
+            <a
+              href="#about-album"
+              class="btn btn-outline-primary btn-lg mb-3"
+            >
+              <i class="fas fa-info-circle me-2"></i>Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Streaming Platforms Section -->
+<section class="py-5 bg-light" id="listen-now">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="mb-4">Listen on All Platforms</h2>
+                <p class="lead">Stream "Its worship Time" and our music everywhere</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="streaming-grid">
+                    <a href="https://open.spotify.com/artist/2416FtiudAa79lko2LIVii?autoplay=true" target="_blank" class="streaming-card spotify-card">
+                        <div class="streaming-icon">
+                            <i class="fab fa-spotify"></i>
+                        </div>
+                        <div class="streaming-info">
+                            <h5>Spotify</h5>
+                            <p>Listen with autoplay</p>
+                        </div>
+                        <div class="streaming-arrow">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="https://music.apple.com/gh/artist/first-love-music/1541756750" target="_blank" class="streaming-card apple-card">
+                        <div class="streaming-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="streaming-info">
+                            <h5>Apple Music</h5>
+                            <p>Stream on Apple Music</p>
+                        </div>
+                        <div class="streaming-arrow">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/channel/UCxMLdxktAAJCCjIx2ADJFNA?feature=gws_kp_artist&feature=gws_kp_artist" target="_blank" class="streaming-card youtube-card">
+                        <div class="streaming-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="streaming-info">
+                            <h5>YouTube</h5>
+                            <p>Watch official videos</p>
+                        </div>
+                        <div class="streaming-arrow">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="https://www.deezer.com/artist/93221382" target="_blank" class="streaming-card deezer-card">
+                        <div class="streaming-icon">
+                            <span class="deezer-text">D</span>
+                        </div>
+                        <div class="streaming-info">
+                            <h5>Deezer</h5>
+                            <p>Stream on Deezer</p>
+                        </div>
+                        <div class="streaming-arrow">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Albums Section -->
+<section class="py-5 bg-light" id="albums">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="mb-4">Albums</h2>
+                <p class="lead">Explore our complete discography</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Eternal Flame EP -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="{% static 'images/love.jpeg' %}"
+                             alt="Eternal Flame EP"
+                             class="img-fluid">
+                        <div class="album-overlay">
+                            <button class="btn btn-primary play-album-btn">
+                                <i class="fas fa-play me-2"></i>Listen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sacred Moments -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="{% static 'images/possible.jpg' %}"
+                             alt="Sacred Moments"
+                             class="img-fluid">
+                        <div class="album-overlay">
+                            <button class="btn btn-primary play-album-btn">
+                                <i class="fas fa-play me-2"></i>Listen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gospel Echoes -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <img src="{% static 'images/weary.jpg' %}"
+                             alt="Gospel Echoes"
+                             class="img-fluid">
+                        <div class="album-overlay">
+                            <button class="btn btn-primary play-album-btn">
+                                <i class="fas fa-play me-2"></i>Listen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="#listen-now" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-music me-2"></i>Stream All Albums
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Connect Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Stay Connected with First Love Music</h3>
+                <p class="mb-0 lead">Follow us for the latest updates, new releases, and behind-the-scenes content.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/the.diamondband?igsh=ZXZpdmFkdGNhMGF6" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCxMLdxktAAJCCjIx2ADJFNA?feature=gws_kp_artist&feature=gws_kp_artist" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://open.spotify.com/artist/2416FtiudAa79lko2LIVii?autoplay=true" target="_blank" title="Spotify">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Streaming Cards */
+.streaming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.streaming-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.streaming-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.streaming-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.streaming-info h5 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+}
+
+.streaming-info p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.streaming-arrow {
+    margin-left: auto;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.streaming-card:hover .streaming-arrow {
+    color: var(--primary-gold);
+    transform: translateX(3px);
+}
+
+/* Brand Colors for Streaming Cards */
+.spotify-card .streaming-icon {
+    background-color: #1DB954;
+    color: white;
+}
+
+.apple-card .streaming-icon {
+    background-color: #FC3C44;
+    color: white;
+}
+
+.youtube-card .streaming-icon {
+    background-color: #FF0000;
+    color: white;
+}
+
+.deezer-card .streaming-icon {
+    background-color: #FF6B35;
+    color: white;
+}
+
+.deezer-text {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 50px;
+}
+
+/* Album Artwork */
+.album-artwork {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+}
+
+.album-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+
+.album-artwork:hover .album-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+}
+
+/* Lyrics */
+.lyrics-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.lyrics-text {
+    font-style: italic;
+    line-height: 1.8;
+    color: #495057;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Detail Items */
+.detail-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .streaming-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .streaming-card {
+        padding: 1rem;
+    }
+
+    .streaming-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .deezer-text {
+        font-size: 14px;
+        line-height: 40px;
+    }
+}
+
+/* Album Cards */
+.album-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.album-cover {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.album-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.album-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.album-card:hover .album-overlay {
+    opacity: 1;
+}
+
+.album-card:hover .album-cover img {
+    transform: scale(1.05);
+}
+
+.play-album-btn {
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    background: var(--primary-gold);
+    border: none;
+    color: var(--primary-black);
+    transition: all 0.3s ease;
+}
+
+.play-album-btn:hover {
+    background: var(--gold-dark);
+    transform: scale(1.05);
+}
+
+/* Mobile Responsive for Albums */
+@media (max-width: 768px) {
+    .album-cover {
+        height: 280px;
+    }
+}
+
+/* First Love Music Logo */
+.flm-logo {
+    max-width: 300px;
+    margin: 0 auto 2rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.flm-logo img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+/* Mobile responsive for logo */
+@media (max-width: 768px) {
+    .flm-logo {
+        max-width: 250px;
+        margin-bottom: 1.5rem;
+    }
+
+    .flm-logo img {
+        max-height: 120px;
+    }
+}
+</style>
+{% endblock %}
