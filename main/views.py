@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
+import os
+import urllib.parse
 from .models import (
     BandMember, Service, GalleryItem, BookingInquiry, 
     ContactMessage, BlogPost, Testimonial, SiteSettings
@@ -108,6 +110,29 @@ def gallery_filter_ajax(request):
             'image_url': item.image.url if item.image else '',
             'video_url': item.video_url,
         })
+    
+    # Also include images from static/images directory
+    static_images_path = os.path.join(settings.BASE_DIR, 'static', 'images')
+    if os.path.exists(static_images_path):
+        exclude_patterns = ['logo', '1200x630', 'ab67616d', 'flm', 'love', 'possible', 'weary']
+        for filename in os.listdir(static_images_path):
+            if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
+                # Skip non-gallery images
+                if any(pattern.lower() in filename.lower() for pattern in exclude_patterns):
+                    continue
+                image_url = f'/static/images/{urllib.parse.quote(filename)}'
+                # Check if this image is already in data from GalleryItem
+                if not any(item['image_url'] == image_url for item in data):
+                    data.append({
+                        'id': f'static_{filename}',
+                        'title': filename.rsplit('.', 1)[0],  # Remove file extension
+                        'description': 'Diamond Band Performance',
+                        'media_type': 'image',
+                        'event_type': 'Other',
+                        'event_date': '2025-01-01',  # Default date
+                        'image_url': image_url,
+                        'video_url': '',
+                    })
     
     return JsonResponse({'items': data})
 

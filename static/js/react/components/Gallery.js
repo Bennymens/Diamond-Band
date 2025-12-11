@@ -1,102 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Masonry from "./Masonry";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const items = [
-    {
-      id: "1",
-      img: "/static/images/WhatsApp%20Image%202025-10-14%20at%2021.24.57_3a657a25.jpg",
-      url: "#",
-      height: 400,
-      description: "Diamond Band performing live at a corporate event",
-    },
-    {
-      id: "2",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.01_504db127.jpg",
-      url: "#",
-      height: 350,
-      description: "Live performance showcase",
-    },
-    {
-      id: "3",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.01_47426ab4.jpg",
-      url: "#",
-      height: 450,
-      description: "Band members in action",
-    },
-    {
-      id: "4",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.02_2dba3492.jpg",
-      url: "#",
-      height: 300,
-      description: "Musical performance highlight",
-    },
-    {
-      id: "5",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.02_369f389e.jpg",
-      url: "#",
-      height: 500,
-      description: "Diamond Band live concert",
-    },
-    {
-      id: "6",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.02_946de9dd.jpg",
-      url: "#",
-      height: 380,
-      description: "Jazz and Afro-pop fusion",
-    },
-    {
-      id: "7",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.03_abdafe07.jpg",
-      url: "#",
-      height: 420,
-      description: "Professional band performance",
-    },
-    {
-      id: "8",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.03_f50ad34f.jpg",
-      url: "#",
-      height: 320,
-      description: "Live music entertainment",
-    },
-    {
-      id: "9",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.04_617031bb.jpg",
-      url: "#",
-      height: 480,
-      description: "Diamond Band showcase",
-    },
-    {
-      id: "10",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.04_f3e06a0e.jpg",
-      url: "#",
-      height: 360,
-      description: "Musical excellence in action",
-    },
-    {
-      id: "11",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.05_6b2b6923.jpg",
-      url: "#",
-      height: 440,
-      description: "Versatile band performance",
-    },
-    {
-      id: "12",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.05_73f97c91.jpg",
-      url: "#",
-      height: 340,
-      description: "Live event entertainment",
-    },
-    {
-      id: "13",
-      img: "/static/images/WhatsApp%20Image%202025-11-27%20at%2013.55.05_fb6ea21c.jpg",
-      url: "#",
-      height: 390,
-      description: "Diamond Band live music",
-    },
-  ];
+  useEffect(() => {
+    fetch("/gallery/filter/")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedItems = data.items.map((item) => ({
+          id: item.id.toString(),
+          img: item.image_url,
+          url: "#",
+          height: Math.floor(Math.random() * 300) + 300, // Random height between 300-600
+          description: item.description || item.title,
+        }));
+        setItems(formattedItems);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching gallery items:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedIndex === null) return;
+
+      switch (e.key) {
+        case "ArrowLeft":
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
+          break;
+        case "Escape":
+          e.preventDefault();
+          setSelectedIndex(null);
+          break;
+      }
+    };
+
+    if (selectedIndex !== null) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedIndex, items.length]);
+
+  const goToPrevious = () => {
+    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
+  };
+
+  const goToNext = () => {
+    setSelectedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
+  };
+
+  if (loading) {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h1 style={{ color: "#d4af37" }}>Loading Gallery...</h1>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: "20px" }}>
@@ -115,11 +89,14 @@ const Gallery = () => {
         hoverScale={0.95}
         blurToFocus={true}
         colorShiftOnHover={false}
-        onImageClick={setSelectedImage}
+        onImageClick={(image) => {
+          const index = items.findIndex((item) => item.id === image.id);
+          setSelectedIndex(index);
+        }}
       />
 
       {/* Image Modal */}
-      {selectedImage && (
+      {selectedIndex !== null && (
         <div
           style={{
             position: "fixed",
@@ -132,13 +109,40 @@ const Gallery = () => {
             alignItems: "center",
             justifyContent: "center",
             zIndex: 1000,
-            cursor: "pointer",
           }}
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
+          {/* Previous Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
+            style={{
+              position: "absolute",
+              left: "20px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(0, 0, 0, 0.7)",
+              color: "white",
+              border: "none",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              fontSize: "24px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1001,
+            }}
+          >
+            ‹
+          </button>
+
           <img
-            src={selectedImage.img}
-            alt={selectedImage.description}
+            src={items[selectedIndex].img}
+            alt={items[selectedIndex].description}
             style={{
               maxWidth: "90%",
               maxHeight: "90%",
@@ -147,10 +151,39 @@ const Gallery = () => {
               boxShadow: "0 10px 50px rgba(0, 0, 0, 0.5)",
             }}
           />
+
+          {/* Next Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setSelectedImage(null);
+              goToNext();
+            }}
+            style={{
+              position: "absolute",
+              right: "20px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(0, 0, 0, 0.7)",
+              color: "white",
+              border: "none",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              fontSize: "24px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1001,
+            }}
+          >
+            ›
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedIndex(null);
             }}
             style={{
               position: "absolute",
@@ -167,10 +200,30 @@ const Gallery = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              zIndex: 1001,
             }}
           >
             ×
           </button>
+
+          {/* Image Counter */}
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "white",
+              background: "rgba(0, 0, 0, 0.7)",
+              padding: "5px 15px",
+              borderRadius: "20px",
+              fontSize: "14px",
+              zIndex: 1001,
+            }}
+          >
+            {selectedIndex + 1} / {items.length}
+          </div>
+
           <div
             style={{
               position: "absolute",
@@ -183,9 +236,10 @@ const Gallery = () => {
               padding: "10px 20px",
               borderRadius: "10px",
               maxWidth: "80%",
+              zIndex: 1001,
             }}
           >
-            {selectedImage.description}
+            {items[selectedIndex].description}
           </div>
         </div>
       )}
